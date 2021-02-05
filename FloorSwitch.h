@@ -34,10 +34,31 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Floor Switch")
 	UStaticMeshComponent* Door;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Floor Switch")
+	FVector InitialDoorLocation;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Floor Switch")
+	FVector InitialSwitchLocation;
+
 	UFUNCTION(BlueprintCallable, Category = "Events")
 	void OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult & SweepResult);
 
 	UFUNCTION(BlueprintCallable, Category = "Events")
 	void OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
+
+	UFUNCTION(BlueprintImplementableEvent, Category = "Door Events")
+	void RaiseDoor();
+
+	UFUNCTION(BlueprintImplementableEvent, Category = "Door Events")
+	void LowerDoor();
+
+	UFUNCTION(BlueprintImplementableEvent, Category = "Door Events")
+	void RaiseSwitch();
+
+	UFUNCTION(BlueprintImplementableEvent, Category = "Door Events")
+	void LowerSwitch();
+
+	UFUNCTION(BlueprintCallable, Category = "Door Events")
+	void UpdateDoorLocation(float MovementOffset);
 
 };
