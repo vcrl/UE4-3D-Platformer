@@ -2,7 +2,7 @@
 
 
 #include "SpawnVolume.h"
-
+#include "Engine/World.h"
 #include "Kismet/KismetMathLibrary.h"
 
 // Sets default values
@@ -36,5 +36,19 @@ FVector ASpawnVolume::GetSpawnPoint()
 	FVector Point = UKismetMathLibrary::RandomPointInBoundingBox(BoxOrigin, BoxExtent); // Returns a random point in the box
 	return Point;
 }
+
+void ASpawnVolume::SpawnActor_Implementation(UClass* Actor, FVector Location)
+{
+	if (Actor)
+	{
+		UWorld* World = GetWorld();
+		FActorSpawnParameters SpawnParams;
+		if (World)
+		{
+			World->SpawnActor<AActor>(Actor, Location, FRotator(0.f), SpawnParams);
+		}
+	}
+}
+
 
 

@@ -36,5 +36,8 @@ public:
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Spawning") // EditAnywhere !!
 	TSubclassOf<ARandomNPC> ActorToSpawn; // Allows to get an actor of subclass RandomNPC
+
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Spawning")
+	void SpawnActor(UClass* Actor, FVector Location);
     
 };
